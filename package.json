@@ -1,9 +1,8 @@
 {
-  "name": "selectel-manager",
-  "version": "0.0.5",
+  "name": "node-selectel-manager",
+  "version": "0.0.6",
   "author": {
-    "email": "just.a.login2@gmail.com",
-    "name": "Artem"
+    "email": "george.skarbovskiy@gmail.com"
   },
   "dependencies": {
     "async": "~0.9.x",
@@ -16,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/cat-corporation/selectel-manager"
+    "url": "git://github.com/skarbovskiy/selectel-manager"
   },
   "main": "index",
   "readmeFilename": "README.md"

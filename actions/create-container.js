@@ -13,7 +13,11 @@ var request = require('request'),
  * @param {Function} callback
  * @param {Object} [additionalHeaders]
  */
-module.exports = function(containerPath, callback, additionalHeaders) {
+module.exports = function(containerPath, additionalHeaders, callback) {
+	if (typeof additionalHeaders  === 'function') {
+		callback = additionalHeaders;
+		additionalHeaders = null;
+	}
   var fullLink = session.xUrl + containerPath,
     req = {
     url: fullLink,
