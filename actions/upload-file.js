@@ -13,13 +13,16 @@ var request = require('request'),
  * Uploads file to the storage. If additional headers are needed, the can be passed with 'additionalHeaders' parameter.
  * @param {String} fullLocalPath
  * @param {String} hostingPath path without URL
+ * @param {String} [archive]
  * @param {Function} callback
- * @param {Object} [additionalHeaders]
  */
-module.exports = function (fullLocalPath, hostingPath, additionalHeaders, callback) {
-	if (typeof additionalHeaders  === 'function') {
-		callback = additionalHeaders;
-		additionalHeaders = null;
+module.exports = function (fullLocalPath, hostingPath, archive, callback) {
+	if (typeof archive  === 'function') {
+		callback = archive;
+		archive = null;
+	}
+	if (archive) {
+		hostingPath += '?extract-archive=' + archive;
 	}
   async.waterfall(
     [
@@ -36,8 +39,6 @@ module.exports = function (fullLocalPath, hostingPath, additionalHeaders, callba
           },
           body: file
         };
-        utils.copyHeaders(req, additionalHeaders);
-
 
         request(req, wfCb);
       }
@@ -46,7 +47,7 @@ module.exports = function (fullLocalPath, hostingPath, additionalHeaders, callba
       if (err || !data) {
         callback(err, {success: false});
       } else {
-        if (data.statusCode == 201) {
+        if (data.statusCode == 201 || data.statusCode == 200) {
           callback(null, {success: true});
         } else {
           callback(null, {

@@ -10,8 +10,8 @@ var request = require('request'),
 /**
  * Creates a public container. If additional headers are needed, the can be passed with 'additionalHeaders' parameter.
  * @param {String} containerPath Path to container without URL
- * @param {Function} callback
  * @param {Object} [additionalHeaders]
+ * @param {Function} callback
  */
 module.exports = function(containerPath, additionalHeaders, callback) {
 	if (typeof additionalHeaders  === 'function') {
