@@ -3,6 +3,7 @@ exports.uploadFile = require('./upload-file');
 exports.uploadFileByContent = require('./upload-file-by-content');
 exports.createLink = require('./create-link');
 exports.deleteFile = require('./delete-file');
+exports.copyFile = require('./copy-file');
 exports.getContainerFiles = require('./get-container-files');
 exports.createContainer = require('./create-container');
 exports.clearCache = require('./clear-cache');
