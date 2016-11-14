@@ -12,5 +12,6 @@ Supported functions:
 - Get container files;
 - Delete file;
 - Upload file;
+- Copy file;
 - Create container;
 - Create public access link for file.
