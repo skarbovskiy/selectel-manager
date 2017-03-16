@@ -1,10 +1,4 @@
-# selectel-manager
-
-!!!
-WARNING: THIS IS NOT FULL IMPLEMENTATION OF SELECTEL USER REST API! ONLY NEAR 1/3 OPTIONS ARE AVAILABLE!
-THIS LIBRARY IS MADE FOR AUTHOR'S PURPOSES ONLY, DON'T USE IT IF YOU NEED SOMETHING ENTERPRISE!
-Nevertheless, library seems to be working.
-!!!
+# node-selectel-manager
 
 The library provides API for some Selectel storage options.
 Supported functions:
@@ -12,6 +6,40 @@ Supported functions:
 - Get container files;
 - Delete file;
 - Upload file;
-- Copy file;
 - Create container;
-- Create public access link for file.
+
+### Installation
+
+```
+npm install node-selectel-manager
+```
+
+### Usage
+
+```js
+const fs = require('fs');
+const manager = require('./index')({
+	login: 'xxx',
+	password: 'xxx'
+});
+
+const file = fs.readFileSync('/home/user/Downloads/archive.tar.gz');
+
+manager
+	.createContainer('test', {'X-Container-Meta-Type': 'public'})
+	.then(() => {
+		return manager.uploadFile(file, 'test/sub-folder/', 'tar.gz');
+	})
+	.then(() => {
+		return manager.clearCache(['http://xxx.selcdn.com/test/cached-file.jpg']);
+	})
+	.then(() => {
+		return manager.getContainerFiles('test');
+	})
+	.then(res => console.log(res.body, res.headers)).catch(console.log)
+
+```
+
+### License
+
+MIT
