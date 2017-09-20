@@ -54,7 +54,8 @@ let Storage = function (options) {
     };
     return checkAuth()
       .then(() => {
-        options.url = this.session.url + options.url;
+        let hasTrailingSlash = /\/$/.test(this.session.url);
+        options.url = (hasTrailingSlash ? this.session.url.slice(0, -1) : this.session.url) + options.url;
         if (!options.headers) {
           options.headers = {};
         }
