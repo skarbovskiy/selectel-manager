@@ -103,8 +103,8 @@ let Storage = function (options) {
     clearCache: files => {
       let body = files.join('\n');
       return makeRequest({
-        url: '/',
-        method: 'PURGE',
+        url: 'v1/cdn/purge',
+        method: 'PUT',
         body
       });
     },
